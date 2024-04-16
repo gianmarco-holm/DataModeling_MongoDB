@@ -1,0 +1,21 @@
+use('store')
+
+db.users.drop()
+
+db.users.insertOne({ // insertar un documento
+  name: "pam", // propiedad del documento
+  address: { // subdocumento (Embebido)
+      street: "Calle falsa 123", // propiedad del subdocumento
+      city: "Sprinfield",
+      zip: 1234
+  },
+  shipping_address: {
+      street: "Calle falsa 124",
+      city: "Sprinfield",
+      zip: "1235"
+  }
+})
+
+db.users.find({
+  "address.city": "Sprinfield" // Filtrar con una propiedad de un sub-documento
+})

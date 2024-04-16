@@ -1,0 +1,12 @@
+use('store')
+
+db.products.aggregate([
+  {
+    $lookup: { // buscar las id que necesitamos
+      from: 'stores',
+      localField: 'stores_ids',
+      foreignField: '_id',
+      as: 'stores'
+    }
+  }
+])

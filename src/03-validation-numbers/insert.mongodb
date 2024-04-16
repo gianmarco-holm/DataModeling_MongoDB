@@ -1,0 +1,8 @@
+use('store')
+
+// Que pasaría si no le pasamos un correo, y en su lugar hay un número
+// Esto significa que no hay integridad en los datos
+db.users.insertOne({
+  last_name: 'Molina',
+  email: 12
+})

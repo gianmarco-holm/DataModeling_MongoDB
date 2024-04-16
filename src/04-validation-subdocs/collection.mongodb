@@ -1,0 +1,39 @@
+use('store')
+
+db.products.drop()
+
+db.createCollection('products', {
+  validator: { // creamos un validador
+    $jsonSchema: { // le indicamos que es un esquema
+      bsonType: 'object', // le decimos que es un documento
+      required: ['name'], // le indicamos que propiedades van a ser obligatorios insertar
+      properties: { // colocamos las propiedades del documento
+        name: {
+          bsonType: 'string' // indicamos que name debe ser siempre un string
+        },
+        sizes: { // Validamos un array
+          bsonType: 'array',
+          items: {
+            bsonType: 'array',
+            minItems: 1, // le indicamos que minimo haya un item
+            uniqueItems: true, // Validamos que los items sean unicos
+            items: {
+              bsonType: 'string'
+            }
+          }
+        },
+        category: { // validamos un subdocumento
+          bsonType: 'object',
+          properties: {
+            name: {
+              bsonType: 'string'
+            },
+            image: {
+              bsonType: 'string'
+            }
+          }
+        }
+      }
+    }
+  }
+})

@@ -1,0 +1,9 @@
+use('store')
+
+db.users.drop()
+
+// Crear un usuario
+db.users.insertOne({
+  name: 'pedro',
+  address: 'San carlos 123'
+})

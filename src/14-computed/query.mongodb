@@ -1,0 +1,20 @@
+use('store')
+
+db.orders.updateOne( // actualizamos la orden
+    { // hacemos match con la orden que queremos actualizar
+        _id: ObjectId('649cb8c89f973670e36e123f')
+    },
+    {   // mostramos el cambio, agregando un nuevo elemento
+        $push: { // agregar elemento
+            items: { // quien se lo agrego
+                name: 'Producto 1',
+                qty: 2,
+                price: 12,
+                product_id: ObjectId('649923f457514437ac501dd4')
+            }
+        },
+        $inc: { // incrementador
+            total: 12 * 2 // total = total + price * qty
+        }
+    }
+)

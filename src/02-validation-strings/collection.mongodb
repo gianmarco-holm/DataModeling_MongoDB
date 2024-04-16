@@ -1,0 +1,26 @@
+use('store')
+
+db.users.drop()
+
+db.createCollection('users', {
+  validator: { // creamos un validador
+    $jsonSchema: { // le indicamos que es un esquema
+      bsonType: 'object', // le decimos que es un documento
+      required: ['email', 'password'], // le indicamos que propiedades van a ser obligatorios insertar
+      properties: { // colocamos las propiedades del documento
+        name: {
+          bsonType: 'string' // indicamos que name debe ser siempre un string
+        },
+        last_name: {
+          bsonType: 'string' // indicamos que name debe ser siempre un string
+        },
+        email: {
+          bsonType: 'string'
+        },
+        password: {
+          bsonType: 'string'
+        }
+      }
+    }
+  }
+})

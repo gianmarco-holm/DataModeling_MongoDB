@@ -1,0 +1,5 @@
+use('store')
+
+db.products.find()
+db.stores.find()
+// 661dc1df64726a3f43ab34a7 -> product

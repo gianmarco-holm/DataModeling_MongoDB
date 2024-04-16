@@ -1,0 +1,18 @@
+use('store')
+
+db.orders.drop()
+
+db.orders.insertMany([
+  {
+      user_id: ObjectId('661dbc865178191a44847dd2'),
+      total: 1300,
+      date: '2023-23-25'
+  },
+  {
+      user_id: ObjectId('661dbc865178191a44847dd2'),
+      total: 2400,
+      date: '2023-12-02'
+  },
+])
+
+db.orders.find()

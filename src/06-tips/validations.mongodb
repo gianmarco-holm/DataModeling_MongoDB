@@ -1,0 +1,40 @@
+use('store')
+
+db.getCollectionInfos()
+
+db.runCommand({
+  collMod: 'users', // coleccion a modificar
+  validator: { // creamos un validador
+    $jsonSchema: { // le indicamos que es un esquema
+      bsonType: 'object', // le decimos que es un documento
+      required: ['email', 'password', 'role'], // le indicamos que propiedades van a ser obligatorios insertar
+      additionalProperties: false, // solo podemos ingresar los siguientes propiedades6
+      properties: { // colocamos las propiedades del documento
+        name: {
+          bsonType: 'string' // indicamos que name debe ser siempre un string
+        },
+        last_name: {
+          bsonType: 'string' // indicamos que name debe ser siempre un string
+        },
+        email: {
+          bsonType: 'string'
+        },
+        password: {
+          bsonType: 'string',
+          pattern: '^[A-Za-z0-9]{8,}$'
+        },
+        age: {
+          bsonType: 'number',
+          minimum: 18,
+          maximum: 99
+        },
+        isSingle: {
+          bsonType: 'bool'
+        },
+        role: {
+          enum: ['customer', 'seller', 'admin']
+        }
+      }
+    }
+  }
+})

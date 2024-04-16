@@ -1,0 +1,22 @@
+use('store')
+
+db.stores.drop()
+
+// insertar tiendas
+db.stores.insertMany([
+  {
+      name: 'Store A',
+      products_ids: [
+          ObjectId("661dc1df64726a3f43ab34a7"),
+          ObjectId("661dc1df64726a3f43ab34a9")
+      ]
+  },
+  {
+      name: 'Store B',
+      products_ids: [
+          ObjectId("64991cdf44ec03dd012ecccc"),
+          ObjectId("661dc1df64726a3f43ab34a9"),
+          ObjectId("661dc1df64726a3f43ab34a7")
+      ]
+  },
+])

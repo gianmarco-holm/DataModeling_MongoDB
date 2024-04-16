@@ -1,0 +1,33 @@
+use('store')
+
+db.orders.find({
+  user_id: ObjectId('661dbc865178191a44847dd2')
+})
+
+db.users.aggregate([
+  {
+      $lookup: { // join
+        from: `orders`,
+        localField: `_id`,
+        foreignField: 'user_id',
+        as: 'orders'
+      }
+  }
+])
+
+// Consultar por una sola orden de compra
+db.orders.aggregate([
+  {
+      $match: { // filtrar
+        _id: ObjectId('661dbeb02ccdfe1cf41c8059') // order id
+      }
+  },
+  {
+      $lookup: { //Join
+        from: `users`,
+        localField: `user_id`,
+        foreignField: '_id',
+        as: 'user'
+      }
+  }
+])
